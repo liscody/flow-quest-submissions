@@ -1,3 +1,11 @@
+Chapter 2 
+Day1
+![Deploy](img/chapter_2.0_day_1/deploy.png)
+![Read-data](img/chapter_2.0_day_1/read_data.png)
+
+
+
+Chapter 1 
 Day 2
 
 Quests
@@ -16,6 +24,7 @@ Answer
 
 All Cadence Programming Language Pillars help to improve and advance that 3 aspects in other way, and it is also good, didn`t it?
 
+Chapter 1 
 Day 1
 
 Quests
