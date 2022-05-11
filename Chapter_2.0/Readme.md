@@ -103,9 +103,10 @@ Answer
   contains from dictionary in Cadence returns as optional type 
   - How to fix it
   we need to use 
-  ```bash
-  return thing[0x03]!
 
+```bash
+  return thing[0x03]!
+```
 
 ## Chapter 2 Day 4
 Quests
