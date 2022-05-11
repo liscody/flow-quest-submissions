@@ -6,9 +6,9 @@
 
 ## Chapter 2 Day 1
 Deploy <br>
-![Deploy](img/chapter_2.0_day_1/deploy.png)
+![Deploy](../img/chapter_2.0_day_1/deploy.png)
 Read data<br>
-![Read-data](img/chapter_2.0_day_1/read_data.png)
+![Read-data](../img/chapter_2.0_day_1/read_data.png)
 
 
 ## Chapter 2 Day 2
@@ -75,7 +75,7 @@ pub fun main(): Number {
 
 
 
-![Read-data](img/chapter_2.0_day_2/read_data.png)
+![Read-data](../img/chapter_2.0_day_2/read_data.png)
 
 
 ## Chapter 2 Day 3
@@ -90,10 +90,10 @@ Quests
 
 Answer
 1. Array
-![Array](img/chapter_2.0_day_3/array.png)
+![Array](../img/chapter_2.0_day_3/array.png)
 
 2. Dictionary 
-![Array](img/chapter_2.0_day_3/dictionary.png)
+![Array](../img/chapter_2.0_day_3/dictionary.png)
 
 3. The force-unwrap operator (!) returns the value inside an optional if it contains a value, or panics and aborts the execution if the optional has no value, i.e, the optional value is nil. 
 4. explain...
@@ -117,7 +117,7 @@ Quests
 
 Answer
 1. Deploy
-![Deploy](img/chapter_2.0_day_4/deploy.png)
+![Deploy](../img/chapter_2.0_day_4/deploy.png)
 2. Dictionary
 ```bash
     pub var supplier: {Address: Profile}
@@ -131,7 +131,7 @@ Answer
     }
 ```
 4. Transaction to call
-![Added](img/chapter_2.0_day_4/added.png)
+![Added](../img/chapter_2.0_day_4/added.png)
 5. Add a script
-![Read](img/chapter_2.0_day_4/read.png)
+![Read](../img/chapter_2.0_day_4/read.png)
 
