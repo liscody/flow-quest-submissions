@@ -1,0 +1,26 @@
+===========================================================================
+Transaction
+===========================================================================
+import Shop from 0x01
+
+transaction(_id: Int, _company: String, _director: String, _account: Address) {
+
+  prepare(acct: AuthAccount) {}
+
+  execute {
+Shop.addSupplier(id: _id, company: _company, director: _director, account: _account)
+log("Added")
+  }
+}
+
+
+===========================================================================
+Scripts
+===========================================================================
+
+
+import Shop from 0x01
+
+pub fun main(account: Address): Shop.Supplier {
+return Shop.suppliers[account]!
+ }

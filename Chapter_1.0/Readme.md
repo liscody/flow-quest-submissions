@@ -1,7 +1,6 @@
 ## Table of Contents
 - [Chapter 1 Day 1](#Chapter-1-Day-1)
 - [Chapter 1 Day 2](#Chapter-1-Day-2)
-- [Chapter 2 Day 1](#Chapter-2-Day-1)
 
 
 ## Chapter 1 Day 1
@@ -39,10 +38,3 @@ Answer
 
 All Cadence Programming Language Pillars help to improve and advance that 3 aspects in other way, and it is also good, didn`t it?
 
-
-
-## Chapter 2 Day 1
-Deploy <br>
-![Deploy](img/chapter_2.0_day_1/deploy.png)
-Read data<br>
-![Read-data](img/chapter_2.0_day_1/read_data.png)
