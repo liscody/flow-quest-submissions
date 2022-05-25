@@ -125,9 +125,9 @@ Quests
 
 Answer
 1. Reference
-![Reference](../img/chapter_3.0_day_3/Screenshot from 2022-05-25 10-43-39.png)
+![Reference](../img/chapter_3.0_day_3/contract.png)
 2. Script
-![Script](../img/chapter_3.0_day_3/Screenshot from 2022-05-25 10-51-32.png)
+![Script](../img/chapter_3.0_day_3/script.png)
 3. It is easiest way work with resources. So you don`t need move them and know where they are located.
 
 
