@@ -20,7 +20,6 @@ Answer
 3. Create
 4. Resurce can be created only in contract. 
 5. That is resource
-6. 
 ```bash
 pub contract Test {
 
@@ -86,12 +85,9 @@ pub contract Fruits  {
         self.listOfFruits <- {}
     }
 }
-
-Array Contract <br>
-
 ```
-
-Transaction 
+Array Contract <br>
+ 
 ```bash
 pub contract color {
 
@@ -129,9 +125,9 @@ Quests
 
 Answer
 1. Reference
-![Reference](../Chapter_3.0/day_3/img/Screenshot from 2022-05-25 10-43-39.png)
+![Reference](../img/Screenshot from 2022-05-25 10-43-39.png)
 2. Script
-![Script](../Chapter_3.0/day_3/img/Screenshot from 2022-05-25 10-51-32.png)
+![Script](../img/Screenshot from 2022-05-25 10-51-32.png)
 3. It is easiest way work with resources. So you don`t need move them and know where they are located.
 
 
