@@ -1,0 +1,21 @@
+===========================================================================
+Transaction
+===========================================================================
+import HelloWorld from 0x01
+
+transaction(myNumber: Int) {
+  prepare(signer: AuthAccount) {}
+  execute {
+    HelloWorld.updateMyNumber(newNumber: myNumber )
+  }
+}
+
+
+===========================================================================
+Scripts
+===========================================================================
+import HelloWorld from 0x01
+
+pub fun main(): Number {
+    return HelloWorld.myNumber
+}
