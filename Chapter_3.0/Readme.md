@@ -133,57 +133,205 @@ Answer
 
 ## Chapter 3 Day 4
 Quests
-1. Deploy a new contract that has a Struct of your choosing inside of it (must be different than Profile).
-2. Create a dictionary or array that contains the Struct you defined.
-3. Create a function to add to that array/dictionary.
-4. Add a transaction to call that function in step 3.
-5. Add a script to read the Struct you defined.
+1. Explain, in your own words, the 2 things resource interfaces can be used for (we went over both in today's content)
+2. Define your own contract. Make your own resource interface and a resource that implements the interface. Create 2 functions. In the 1st function, show an example of not restricting the type of the resource and accessing its content. In the 2nd function, show an example of restricting the type of the resource and NOT being able to access its content.
+3. How would we fix this code?
 
 Answer
-1. Deploy
-![Deploy](../img/chapter_2.0_day_4/deploy.png)
-2. Dictionary
+1. Interfaces can be used for resources and structs. Behavior will be the same. 
+The main things of resources that it is set up requirements for resource or struct and these requirements should be  implemented to. Implementation of resources should include all function and variables. Developer can create resource, but this activity of  it will be managed by interfaces.
+2. Test contract 
 ```bash
-    pub var supplier: {Address: Profile}
+pub contract test {
+
+    pub resource interface IFruits {
+      pub var cost: Int
+     
+    }
+
+    pub resource Fruits: IFruits {
+      pub var cost: Int
+      pub var name: String
+
+      pub fun setItem(name: String): String {
+        self.name = name
+        return self.name
+      }
+
+      init() {
+        self.cost = 1
+        self.name = "Orange"
+      }
+    }
+
+    pub fun outOfRestriction() {
+      let Citrus: @Fruits <- create Fruits()
+      Citrus.setItem(name: "Gray Orange")
+      log(Citrus.name)
+
+      destroy Citrus
+    }
+
+    pub fun containRestrictions() {
+      let Kiwi: @Fruits{IFruits} <- create Fruits()
+      let newItem = Kiwi.setItem(name: "green kiwi") // this si not working 
+      log(newItem)
+
+      destroy Kiwi
+    }
+}
 ```
-3. New function
+3. Fixed code 
 
 ```bash
-    pub fun addSupplier(id: Int, company: String, director: String, account: Address) {
-        let newSupplier = Profile(_id: id, _company: company, _director: director, _account: account)
-        self.supplier[account] = newSupplier
+pub contract Stuff {
+
+    pub struct interface ITest {
+      pub var greeting: String
+      pub var favouriteFruit: String
+      pub fun changeGreeting(newGreeting: String): String
     }
+    pub struct Test: ITest {
+      pub var greeting: String
+      pub var favouriteFruit: String
+
+      pub fun changeGreeting(newGreeting: String): String {
+        self.greeting = newGreeting
+        return self.greeting 
+      }
+
+      init() {
+        self.greeting = "Hello!"
+        self.favouriteFruit = "Orange"
+      }
+    }
+
+    pub fun fixThis() {
+      let test: Test{ITest} = Test()
+      let newGreeting = test.changeGreeting(newGreeting: "Bonjour!") 
+      log(newGreeting)
+    }
+}
 ```
-4. Transaction to call
-![Added](../img/chapter_2.0_day_4/added.png)
-5. Add a script
-![Read](../img/chapter_2.0_day_4/read.png)
 
 ## Chapter 3 Day 5
 Quests
-1. Deploy a new contract that has a Struct of your choosing inside of it (must be different than Profile).
-2. Create a dictionary or array that contains the Struct you defined.
-3. Create a function to add to that array/dictionary.
-4. Add a transaction to call that function in step 3.
-5. Add a script to read the Struct you defined.
+For today's quest, you will be looking at a contract and a script. You will be looking at 4 variables (a, b, c, d) and 3 functions (publicFunc, contractFunc, privateFunc) defined in SomeContract. In each AREA (1, 2, 3, and 4), I want you to do the following: for each variable (a, b, c, and d), tell me in which areas they can be read (read scope) and which areas they can be modified (write scope). For each function (publicFunc, contractFunc, and privateFunc), simply tell me where they can be called.
+
 
 Answer
-1. Deploy
-![Deploy](../img/chapter_2.0_day_4/deploy.png)
-2. Dictionary
+1. 
 ```bash
-    pub var supplier: {Address: Profile}
-```
-3. New function
+   access(all) contract SomeContract {
+    pub var testStruct: SomeStruct
 
-```bash
-    pub fun addSupplier(id: Int, company: String, director: String, account: Address) {
-        let newSupplier = Profile(_id: id, _company: company, _director: director, _account: account)
-        self.supplier[account] = newSupplier
+    pub struct SomeStruct {
+
+        //
+        // 4 Variables
+        pub(set) var a: String
+        pub var b: String
+        access(contract) var c: String
+        access(self) var d: String
+
+        //
+        // 3 Functions
+        pub fun publicFunc() {}
+        access(contract) fun contractFunc() {}
+        access(self) fun privateFunc() {}
+
+
+        pub fun structFunc() {
+            self.a = "Write OK" // pub 
+            self.b = "Write OK" // pub 
+            self.c = "Write OK" // Current and inner
+            self.d = "Write OK" // Current and inner            
+            
+            log(self.a) // read OK 
+            log(self.b) // read OK pub 
+            log(self.c) // read OK Current and inner
+            log(self.d) // read OK Current and inner
+
+            self.publicFunc()   // All
+            self.contractFunc() // Current, inner, and containing contract
+            self.privateFunc()  // Current and inner
+        }
+
+        init() {
+            self.a = "a"
+            self.b = "b"
+            self.c = "c"
+            self.d = "d"
+        }
     }
-```
-4. Transaction to call
-![Added](../img/chapter_2.0_day_4/added.png)
-5. Add a script
-![Read](../img/chapter_2.0_day_4/read.png)
 
+    pub resource SomeResource {
+        pub var e: Int
+
+        pub fun resourceFunc() {
+            SomeContract.testStruct.a = "Write OK" 
+            //SomeContract.testStruct.b = "Write NON" 
+            //SomeContract.testStruct.c = "Write NON" 
+            //SomeContract.testStruct.d = "Write NON"
+            
+            log(SomeContract.testStruct.a) // read OK 
+            log(SomeContract.testStruct.b) // read OK pub 
+            log(SomeContract.testStruct.c) // read OK Current and inner
+            //log(SomeContract.testStruct.d) // read NON 
+
+            SomeContract.testStruct.publicFunc()   
+            SomeContract.testStruct.contractFunc() 
+            //SomeContract.testStruct.privateFunc()  // Function has private access
+        }
+
+        init() {
+            self.e = 17
+        }
+    }
+
+    pub fun createSomeResource(): @SomeResource {
+        return <- create SomeResource()
+    }
+
+    pub fun questsAreFun() {
+            SomeContract.testStruct.a = "Write OK" 
+            //SomeContract.testStruct.b = "Write NON" 
+            //SomeContract.testStruct.c = "Write NON" 
+            //SomeContract.testStruct.d = "Write NON"
+            
+            log(SomeContract.testStruct.a) // read OK 
+            log(SomeContract.testStruct.b) // read OK pub 
+            log(SomeContract.testStruct.c) // read OK Current and inner
+            //log(SomeContract.testStruct.d) // read NON 
+
+            SomeContract.testStruct.publicFunc()   
+            SomeContract.testStruct.contractFunc() 
+            //SomeContract.testStruct.privateFunc()  // Function has private access
+    }
+
+    init() {
+        self.testStruct = SomeStruct()
+    }
+}
+```
+- script 
+
+```bash
+import SomeContract from 0x02
+
+pub fun main() {
+            SomeContract.testStruct.a = "Write OK" 
+            //SomeContract.testStruct.b = "Write NON" 
+            //SomeContract.testStruct.c = "Write NON" 
+            //SomeContract.testStruct.d = "Write NON"
+            
+            log(SomeContract.testStruct.a) // read OK 
+            log(SomeContract.testStruct.b) // read OK  
+            //log(SomeContract.testStruct.c) // read OK Current and inner
+            //log(SomeContract.testStruct.d) // read NON 
+
+            SomeContract.testStruct.publicFunc()     //  OK 
+            //SomeContract.testStruct.contractFunc() //  NON
+            //SomeContract.testStruct.privateFunc()  // Function has private access
+}
+```
